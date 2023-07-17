@@ -15,211 +15,174 @@
 @prefix vann: <http://purl.org/vocab/vann/>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 
-<#AssociatedEvent> a rdfs:Class;
-	rdfs:subClassOf prov:InstantaneousEvent;
-	rdfs:label "AssociatedEvent".
+csr:AssociatedEvent a rdfs:Class.
 
-<#Cruise> a rdfs:Class;
-	rdfs:subClassOf gl:Cruise, marineTLO:BC61_Capture_Activity, sdo:Event;
-	rdfs:label "Cruise"@en.
+csr:Cruise a rdfs:Class;
+	rdfs:subClassOf gl:Cruise, marineTLO:BC61_Capture_Activity, sdo:Event.
 
-<#CruiseSummaryReport> a rdfs:Class;
+csr:CruiseSummaryReport a rdfs:Class;
 	rdfs:subClassOf foaf:Document, gl:Document, prov:Entity;
-	rdfs:label "Cruise Summary Report"@en;
-	gl:documentType [a gl:DocumentType; rdfs:label "Cruise Summary Report"].
+	gl:documentType [a gl:DocumentType].
 
-<#Measurement> a rdfs:Class;
-	rdfs:subClassOf <#Operation>.
+csr:Measurement a rdfs:Class;
+	rdfs:subClassOf csr:Operation.
 
-<#Mooring> a rdfs:Class;
-	rdfs:subClassOf <#Operation>.
+csr:Mooring a rdfs:Class;
+	rdfs:subClassOf csr:Operation.
 
-<#Operation> a rdfs:Class;
-	rdfs:label "Operation"@en.
+csr:Operation a rdfs:Class.
 
-<#PortCall> a rdfs:Class;
-	rdfs:subClassOf gl:PortCall, sdo:Event;
-	rdfs:label "PortCall"@en.
+csr:PortCall a rdfs:Class;
+	rdfs:subClassOf gl:PortCall, sdo:Event.
 	
 gl:Cruise a rdfs:Class;
-	rdfs:subClassOf <#Cruise>.
+	rdfs:subClassOf csr:Cruise.
 
 gl:PortCall a rdfs:Class;
-	rdfs:subClassOf <#PortCall>.
+	rdfs:subClassOf csr:PortCall.
 
-<#additionalDocumentation> rdfs:subPropertyOf rdfs:seeAlso;
-    rdfs:domain <#CruiseSummaryReport>;
-    rdfs:range xsd:anyURI;
-    rdfs:label "additionalDocumentation"@en.
+csr:additionalDocumentation rdfs:subPropertyOf rdfs:seeAlso;
+    rdfs:domain csr:CruiseSummaryReport;
+    rdfs:range xsd:anyURI.
 
-<associatedEvent> a rdf:Property;
-    rdfs:domain <#Operation>;
-    rdfs:range <#AssociatedEvent>;
-    rdfs:label "associatedEvent"@en.
+csr:associatedEvent a rdf:Property;
+    rdfs:domain csr:Operation;
+    rdfs:range csr:AssociatedEvent.
     
-<#atLocation> rdfs:subPropertyOf prov:atLocation;
-    rdfs:domain <#AssociatedEvent>;
-    rdfs:range gsp:wktLiteral;
-    rdfs:label "atLocation"@en.
+csr:atLocation rdfs:subPropertyOf prov:atLocation;
+    rdfs:domain csr:AssociatedEvent;
+    rdfs:range gsp:wktLiteral.
 
-<#atPort> rdfs:subPropertyOf gl:atPort, prov:atLocation;
-    rdfs:domain <#PortCall>;
-    rdfs:range xsd:anyUri;
-    rdfs:label "atPort"@en.
+csr:atPort rdfs:subPropertyOf gl:atPort, prov:atLocation;
+    rdfs:domain csr:PortCall;
+    rdfs:range xsd:anyUri.
 
-<#boundingBox> rdfs:subPropertyOf dct:spatial;
-	rdfs:domain <#CruiseSummaryReport>;
-	rdfs:range gsp:wktLiteral;
-	rdfs:label "boundingBox".
+csr:boundingBox rdfs:subPropertyOf dct:spatial;
+	rdfs:domain csr:CruiseSummaryReport;
+	rdfs:range gsp:wktLiteral.
 
-<#collateCentre> a rdf:Property;
-	rdfs:domain <#CruiseSummaryReport>;
-	rdfs:range org:Organization;
-	rdfs:label "collateCentre"@en.
+csr:collateCentre a rdf:Property;
+	rdfs:domain csr:CruiseSummaryReport;
+	rdfs:range org:Organization.
 
-<#describesCruise> rdfs:subPropertyOf foaf:primaryTopic;
-    rdfs:domain <#CruiseSummaryReport>;
-    rdfs:range <#Cruise>;
-    rdfs:range xsd:anyURI;
-    rdfs:label "describesCruise"@en.
+csr:describesCruise rdfs:subPropertyOf foaf:primaryTopic;
+    rdfs:domain csr:CruiseSummaryReport;
+    rdfs:range csr:Cruise;
+    rdfs:range xsd:anyURI.
 
-<#describesDataset> rdfs:subPropertyOf prov:wasGeneratedBy;
-    rdfs:domain <#CruiseSummaryReport>;
-    rdfs:range gl:Dataset;
-    rdfs:label "describesDataset"@en.
+csr:describesDataset rdfs:subPropertyOf prov:wasGeneratedBy;
+    rdfs:domain csr:CruiseSummaryReport;
+    rdfs:range gl:Dataset.
 
-<#describesOperation> rdfs:subPropertyOf prov:wasGeneratedBy;
-    rdfs:domain <#CruiseSummaryReport>;
-    rdfs:range <#Operation>;
-    rdfs:label "describesOperation"@en.
+csr:describesOperation rdfs:subPropertyOf prov:wasGeneratedBy;
+    rdfs:domain csr:CruiseSummaryReport;
+    rdfs:range csr:Operation.
 
-<#description> rdfs:subPropertyOf rdfs:comment;
-    rdfs:domain <#CruiseSummaryReport>, <#Operation>;
-    rdfs:range rdfs:Literal;
-    rdfs:label "description"@en.
+csr:description rdfs:subPropertyOf rdfs:comment;
+    rdfs:domain csr:CruiseSummaryReport, csr:Operation;
+    rdfs:range rdfs:Literal.
 
-<#generalOceanArea> a rdf:Property;
-    rdfs:domain <#CruiseSummaryReport>;
-    rdfs:range xsd:anyURI;
-    rdfs:label "generalOceanArea"@en.
+csr:generalOceanArea a rdf:Property;
+    rdfs:domain csr:CruiseSummaryReport;
+    rdfs:range xsd:anyURI.
 
-<#hasChiefScientist> rdfs:subPropertyOf gl:hasChiefScientist, prov:wasAssociatedWith;
-    rdfs:domain <#Cruise>;
-    rdfs:range prov:Agent;
-    rdfs:label "hasChiefScientist".
+csr:hasChiefScientist rdfs:subPropertyOf gl:hasChiefScientist, prov:wasAssociatedWith;
+    rdfs:domain csr:Cruise;
+    rdfs:range prov:Agent.
 
-<#hasCoChiefScientist> rdfs:subPropertyOf gl:hasCoChiefScientist, prov:wasAssociatedWith;
-    rdfs:domain <#Cruise>;
-    rdfs:range prov:Agent;
-    rdfs:label "hasCoChiefScientist"@en.
+csr:hasCoChiefScientist rdfs:subPropertyOf gl:hasCoChiefScientist, prov:wasAssociatedWith;
+    rdfs:domain csr:Cruise;
+    rdfs:range prov:Agent.
     
-<#hasDOI> rdfs:subPropertyOf dct:identifier;
-    rdfs:label "hasDOI"@en;
-    rdfs:range <#Cruise>;
+csr:hasDOI rdfs:subPropertyOf dct:identifier;
+    rdfs:range csr:Cruise;
     rdfs:domain rdfs:Literal, xsd:anyURI.
 
-<#hasEndPortCall> rdfs:subPropertyOf gl:hasEndPortCall, prov:qualifiedEnd;
-    rdfs:range <#Cruise>;
-    rdfs:domain <#PortCall>;
-    rdfs:label "hasEndPortCall"@en.
+csr:hasEndPortCall rdfs:subPropertyOf gl:hasEndPortCall, prov:qualifiedEnd;
+    rdfs:range csr:Cruise;
+    rdfs:domain csr:PortCall.
 
-<#hasIdentifier> rdfs:subPropertyOf rdfs:label;
-    rdfs:domain <#Cruise>;
-    rdfs:range rdfs:Literal;
-    rdfs:label "identifier"@en.
+csr:hasIdentifier rdfs:subPropertyOf rdfs:label;
+    rdfs:domain csr:Cruise;
+    rdfs:range rdfs:Literal.
 
-<#hasProgram> a rdf:Property;
+csr:hasProgram a rdf:Property;
 	rdfs:subPropertyOf prov:wasGeneratedBy;
-	rdfs:domain <#CruiseSummaryReport>;
-	rdfs:range prov:Activity, dbo:ResearchProject, gl:Program;
-	rdfs:label "hasProgram"@en.
+	rdfs:domain csr:CruiseSummaryReport;
+	rdfs:range prov:Activity, dbo:ResearchProject, gl:Program.
 
-<#hasStartPortCall> rdfs:subPropertyOf gl:hasStartPortCall, prov:qualifiedStart;
-    rdfs:range <#Cruise>;
-    rdfs:domain <#PortCall>;
-    rdfs:label "hasStartPortCall"@en.
+csr:hasStartPortCall rdfs:subPropertyOf gl:hasStartPortCall, prov:qualifiedStart;
+    rdfs:range csr:Cruise;
+    rdfs:domain csr:PortCall.
 
-<#hasTimeStamp> rdfs:subPropertyOf prov:atTime;
-    rdfs:domain <#Operation>, <#PortCall>;
-    rdfs:range xsd:date, xsd:dateTime;
-    rdfs:label "hasTimeStamp"@en.
+csr:hasTimeStamp rdfs:subPropertyOf prov:atTime;
+    rdfs:domain csr:Operation, csr:PortCall;
+    rdfs:range xsd:date, xsd:dateTime.
     
-<#hasTrack> rdfs:subPropertyOf gl:hasTrack;
-    rdfs:domain <#Cruise>;
-    rdfs:range gsp:wktLiteral;
-    rdfs:label "hasTrack"@en.
+csr:hasTrack rdfs:subPropertyOf gl:hasTrack;
+    rdfs:domain csr:Cruise;
+    rdfs:range gsp:wktLiteral.
 
-<#instrumentID> a rdf:Property;
-	rdfs:subPropertyOf <#label>, rdfs:label;
+csr:instrumentID a rdf:Property;
+	rdfs:subPropertyOf csr:label, rdfs:label;
 	rdfs:domain gl:Instrument;
-	rdfs:range rdfs:Literal;
-	rdfs:label "instrumentID"@en.
+	rdfs:range rdfs:Literal.
 
-<#instrumentPlatformCode> a rdf:Property;
-	rdfs:subPropertyOf <#label>, rdfs:label;
+csr:instrumentPlatformCode a rdf:Property;
+	rdfs:subPropertyOf csr:label, rdfs:label;
 	rdfs:domain gl:Instrument;
-	rdfs:range rdfs:Literal;
-	rdfs:label "instrumentPlatformCode"@en.
+	rdfs:range rdfs:Literal.
 
-<#instrumentPlatformDefinition> a rdf:Property;
-	rdfs:subPropertyOf <#description>, rdfs:comment;
+csr:instrumentPlatformDefinition a rdf:Property;
+	rdfs:subPropertyOf csr:description, rdfs:comment;
 	rdfs:domain gl:Instrument;
-	rdfs:range rdfs:Literal;
-	rdfs:label "instrumentPlatformDefinition"@en.
+	rdfs:range rdfs:Literal.
 
-<#label> a rdf:Property;
+csr:label a rdf:Property;
 	rdfs:subPropertyOf rdfs:label;
-	rdfs:range <#Cruise>;
-	rdfs:domain rdfs:Literal;
-	rdfs:label "label"@en.
+	rdfs:range csr:Cruise;
+	rdfs:domain rdfs:Literal.
 
-<#marsdenSquare> a rdf:Property;
-    rdfs:domain <#CruiseSummaryReport>;
-    rdfs:range xsd:anyURI;
-    rdfs:label "marsdenSquare"@en.
+csr:marsdenSquare a rdf:Property;
+    rdfs:domain csr:CruiseSummaryReport;
+    rdfs:range xsd:anyURI.
 
-<#numberOfMeasurements> a rdf:Property;
-    rdfs:domain <#Measurement>;
-    rdfs:range xsd:integer;
-    rdfs:label "numberOfMeasurements"@en.
+csr:numberOfMeasurements a rdf:Property;
+    rdfs:domain csr:Measurement;
+    rdfs:range xsd:integer.
 
-<#responsibleLaboratory> rdfs:subPropertyOf prov:wasAttributedTo;
-    rdfs:domain <#CruiseSummaryReport>;
-    rdfs:range foaf:Organization, gl:Organization, org:Organization, prov:Organization;
-    rdfs:label "responsibleLaboratory"@en.
+csr:responsibleLaboratory rdfs:subPropertyOf prov:wasAttributedTo;
+    rdfs:domain csr:CruiseSummaryReport;
+    rdfs:range foaf:Organization, gl:Organization, org:Organization, prov:Organization.
 
-<#specificGeographicArea> rdfs:subPropertyOf rdfs:comment;
-    rdfs:domain <#CruiseSummaryReport>;
-    rdfs:range rdfs:Literal;
-    rdfs:label "specificGeographicArea"@en.
+csr:specificGeographicArea rdfs:subPropertyOf rdfs:comment;
+    rdfs:domain csr:CruiseSummaryReport;
+    rdfs:range rdfs:Literal.
 
-<#trackChart> rdfs:subPropertyOf rdfs:seeAlso;
-    rdfs:domain <#CruiseSummaryReport>;
-    rdfs:range xsd:anyURI;
-    rdfs:label "trackChart"@en.
+csr:trackChart rdfs:subPropertyOf rdfs:seeAlso;
+    rdfs:domain csr:CruiseSummaryReport;
+    rdfs:range xsd:anyURI.
 
-<#undertakenBy> rdfs:subPropertyOf prov:used;
-    rdfs:domain <#Cruise>;
+csr:undertakenBy rdfs:subPropertyOf prov:used;
+    rdfs:domain csr:Cruise;
     rdfs:range prov:Entity;
-    rdfs:label "isUndertakenBy"@en;
-    owl:isInverseOf <#undertakes>.
+    owl:isInverseOf csr:undertakes.
 
-<#undertakes> rdfs:subPropertyOf prov:wasGeneratedBy;
+csr:undertakes rdfs:subPropertyOf prov:wasGeneratedBy;
     rdfs:domain prov:Entity;
-    rdfs:range <#Cruise>;
-    rdfs:label "undertook";
-    owl:isInverseOf <#undertakenBy>.
+    rdfs:range csr:Cruise;
+    owl:isInverseOf csr:undertakenBy.
 
-gl:atPort rdfs:subPropertyOf <#atPort>.
+gl:atPort rdfs:subPropertyOf csr:atPort.
 
-gl:hasChiefScientist rdfs:subPrpertyOf <#hasChiefScientist>.
+gl:hasChiefScientist rdfs:subPrpertyOf csr:hasChiefScientist.
 
-gl:hasCoChiefScientist rdfs:subPrpertyOf <#hasCoChiefScientist>.
+gl:hasCoChiefScientist rdfs:subPrpertyOf csr:hasCoChiefScientist.
 
-gl:hasEndPortCall rdfs:subPropertyOf <#hasEndPortCall>.
+gl:hasEndPortCall rdfs:subPropertyOf csr:hasEndPortCall.
 
-gl:hasStartPortCall rdfs:subPropertyOf <#hasStartPortCall>.
+gl:hasStartPortCall rdfs:subPropertyOf csr:hasStartPortCall.
 
-gl:hasTrack rdfs:subPropertyOf <#hasTrack>.
+gl:hasTrack rdfs:subPropertyOf csr:hasTrack.
 
-gl:hasVessel rdfs:subPropertyOf <#undertakenBy>.
+gl:hasVessel rdfs:subPropertyOf csr:undertakenBy.
