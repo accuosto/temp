@@ -1,0 +1,225 @@
+@base <http://purl.org/org/iode/po/voc/cruise-summary-reports>.
+
+@prefix dct: <http://www.purl.org/dc/terms/>.
+@prefix dbo: <http://dbpedia.org/ontology/>.
+@prefix foaf: <http://xmlns.com/foaf/spec/#>.
+@prefix gl: <http://schema.geolink.org/1.0/base/main#>.
+@prefix gsp: <http://www.opengis.net/ont/geosparql#>.
+@prefix marineTLO: <http://www.ics.forth.gr/isl/ontology/MarineTLO/>.
+@prefix org: <http://www.w3.org/ns/org#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix prov: <http://www.w3.org/ns/prov#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sdo: <http://schema.org/>.
+@prefix vann: <http://purl.org/vocab/vann/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+<#AssociatedEvent> a rdfs:Class;
+	rdfs:subClassOf prov:InstantaneousEvent;
+	rdfs:label "AssociatedEvent".
+
+<#Cruise> a rdfs:Class;
+	rdfs:subClassOf gl:Cruise, marineTLO:BC61_Capture_Activity, sdo:Event;
+	rdfs:label "Cruise"@en.
+
+<#CruiseSummaryReport> a rdfs:Class;
+	rdfs:subClassOf foaf:Document, gl:Document, prov:Entity;
+	rdfs:label "Cruise Summary Report"@en;
+	gl:documentType [a gl:DocumentType; rdfs:label "Cruise Summary Report"].
+
+<#Measurement> a rdfs:Class;
+	rdfs:subClassOf <#Operation>.
+
+<#Mooring> a rdfs:Class;
+	rdfs:subClassOf <#Operation>.
+
+<#Operation> a rdfs:Class;
+	rdfs:label "Operation"@en.
+
+<#PortCall> a rdfs:Class;
+	rdfs:subClassOf gl:PortCall, sdo:Event;
+	rdfs:label "PortCall"@en.
+	
+gl:Cruise a rdfs:Class;
+	rdfs:subClassOf <#Cruise>.
+
+gl:PortCall a rdfs:Class;
+	rdfs:subClassOf <#PortCall>.
+
+<#additionalDocumentation> rdfs:subPropertyOf rdfs:seeAlso;
+    rdfs:domain <#CruiseSummaryReport>;
+    rdfs:range xsd:anyURI;
+    rdfs:label "additionalDocumentation"@en.
+
+<associatedEvent> a rdf:Property;
+    rdfs:domain <#Operation>;
+    rdfs:range <#AssociatedEvent>;
+    rdfs:label "associatedEvent"@en.
+    
+<#atLocation> rdfs:subPropertyOf prov:atLocation;
+    rdfs:domain <#AssociatedEvent>;
+    rdfs:range gsp:wktLiteral;
+    rdfs:label "atLocation"@en.
+
+<#atPort> rdfs:subPropertyOf gl:atPort, prov:atLocation;
+    rdfs:domain <#PortCall>;
+    rdfs:range xsd:anyUri;
+    rdfs:label "atPort"@en.
+
+<#boundingBox> rdfs:subPropertyOf dct:spatial;
+	rdfs:domain <#CruiseSummaryReport>;
+	rdfs:range gsp:wktLiteral;
+	rdfs:label "boundingBox".
+
+<#collateCentre> a rdf:Property;
+	rdfs:domain <#CruiseSummaryReport>;
+	rdfs:range org:Organization;
+	rdfs:label "collateCentre"@en.
+
+<#describesCruise> rdfs:subPropertyOf foaf:primaryTopic;
+    rdfs:domain <#CruiseSummaryReport>;
+    rdfs:range <#Cruise>;
+    rdfs:range xsd:anyURI;
+    rdfs:label "describesCruise"@en.
+
+<#describesDataset> rdfs:subPropertyOf prov:wasGeneratedBy;
+    rdfs:domain <#CruiseSummaryReport>;
+    rdfs:range gl:Dataset;
+    rdfs:label "describesDataset"@en.
+
+<#describesOperation> rdfs:subPropertyOf prov:wasGeneratedBy;
+    rdfs:domain <#CruiseSummaryReport>;
+    rdfs:range <#Operation>;
+    rdfs:label "describesOperation"@en.
+
+<#description> rdfs:subPropertyOf rdfs:comment;
+    rdfs:domain <#CruiseSummaryReport>, <#Operation>;
+    rdfs:range rdfs:Literal;
+    rdfs:label "description"@en.
+
+<#generalOceanArea> a rdf:Property;
+    rdfs:domain <#CruiseSummaryReport>;
+    rdfs:range xsd:anyURI;
+    rdfs:label "generalOceanArea"@en.
+
+<#hasChiefScientist> rdfs:subPropertyOf gl:hasChiefScientist, prov:wasAssociatedWith;
+    rdfs:domain <#Cruise>;
+    rdfs:range prov:Agent;
+    rdfs:label "hasChiefScientist".
+
+<#hasCoChiefScientist> rdfs:subPropertyOf gl:hasCoChiefScientist, prov:wasAssociatedWith;
+    rdfs:domain <#Cruise>;
+    rdfs:range prov:Agent;
+    rdfs:label "hasCoChiefScientist"@en.
+    
+<#hasDOI> rdfs:subPropertyOf dct:identifier;
+    rdfs:label "hasDOI"@en;
+    rdfs:range <#Cruise>;
+    rdfs:domain rdfs:Literal, xsd:anyURI.
+
+<#hasEndPortCall> rdfs:subPropertyOf gl:hasEndPortCall, prov:qualifiedEnd;
+    rdfs:range <#Cruise>;
+    rdfs:domain <#PortCall>;
+    rdfs:label "hasEndPortCall"@en.
+
+<#hasIdentifier> rdfs:subPropertyOf rdfs:label;
+    rdfs:domain <#Cruise>;
+    rdfs:range rdfs:Literal;
+    rdfs:label "identifier"@en.
+
+<#hasProgram> a rdf:Property;
+	rdfs:subPropertyOf prov:wasGeneratedBy;
+	rdfs:domain <#CruiseSummaryReport>;
+	rdfs:range prov:Activity, dbo:ResearchProject, gl:Program;
+	rdfs:label "hasProgram"@en.
+
+<#hasStartPortCall> rdfs:subPropertyOf gl:hasStartPortCall, prov:qualifiedStart;
+    rdfs:range <#Cruise>;
+    rdfs:domain <#PortCall>;
+    rdfs:label "hasStartPortCall"@en.
+
+<#hasTimeStamp> rdfs:subPropertyOf prov:atTime;
+    rdfs:domain <#Operation>, <#PortCall>;
+    rdfs:range xsd:date, xsd:dateTime;
+    rdfs:label "hasTimeStamp"@en.
+    
+<#hasTrack> rdfs:subPropertyOf gl:hasTrack;
+    rdfs:domain <#Cruise>;
+    rdfs:range gsp:wktLiteral;
+    rdfs:label "hasTrack"@en.
+
+<#instrumentID> a rdf:Property;
+	rdfs:subPropertyOf <#label>, rdfs:label;
+	rdfs:domain gl:Instrument;
+	rdfs:range rdfs:Literal;
+	rdfs:label "instrumentID"@en.
+
+<#instrumentPlatformCode> a rdf:Property;
+	rdfs:subPropertyOf <#label>, rdfs:label;
+	rdfs:domain gl:Instrument;
+	rdfs:range rdfs:Literal;
+	rdfs:label "instrumentPlatformCode"@en.
+
+<#instrumentPlatformDefinition> a rdf:Property;
+	rdfs:subPropertyOf <#description>, rdfs:comment;
+	rdfs:domain gl:Instrument;
+	rdfs:range rdfs:Literal;
+	rdfs:label "instrumentPlatformDefinition"@en.
+
+<#label> a rdf:Property;
+	rdfs:subPropertyOf rdfs:label;
+	rdfs:range <#Cruise>;
+	rdfs:domain rdfs:Literal;
+	rdfs:label "label"@en.
+
+<#marsdenSquare> a rdf:Property;
+    rdfs:domain <#CruiseSummaryReport>;
+    rdfs:range xsd:anyURI;
+    rdfs:label "marsdenSquare"@en.
+
+<#numberOfMeasurements> a rdf:Property;
+    rdfs:domain <#Measurement>;
+    rdfs:range xsd:integer;
+    rdfs:label "numberOfMeasurements"@en.
+
+<#responsibleLaboratory> rdfs:subPropertyOf prov:wasAttributedTo;
+    rdfs:domain <#CruiseSummaryReport>;
+    rdfs:range foaf:Organization, gl:Organization, org:Organization, prov:Organization;
+    rdfs:label "responsibleLaboratory"@en.
+
+<#specificGeographicArea> rdfs:subPropertyOf rdfs:comment;
+    rdfs:domain <#CruiseSummaryReport>;
+    rdfs:range rdfs:Literal;
+    rdfs:label "specificGeographicArea"@en.
+
+<#trackChart> rdfs:subPropertyOf rdfs:seeAlso;
+    rdfs:domain <#CruiseSummaryReport>;
+    rdfs:range xsd:anyURI;
+    rdfs:label "trackChart"@en.
+
+<#undertakenBy> rdfs:subPropertyOf prov:used;
+    rdfs:domain <#Cruise>;
+    rdfs:range prov:Entity;
+    rdfs:label "isUndertakenBy"@en;
+    owl:isInverseOf <#undertakes>.
+
+<#undertakes> rdfs:subPropertyOf prov:wasGeneratedBy;
+    rdfs:domain prov:Entity;
+    rdfs:range <#Cruise>;
+    rdfs:label "undertook";
+    owl:isInverseOf <#undertakenBy>.
+
+gl:atPort rdfs:subPropertyOf <#atPort>.
+
+gl:hasChiefScientist rdfs:subPrpertyOf <#hasChiefScientist>.
+
+gl:hasCoChiefScientist rdfs:subPrpertyOf <#hasCoChiefScientist>.
+
+gl:hasEndPortCall rdfs:subPropertyOf <#hasEndPortCall>.
+
+gl:hasStartPortCall rdfs:subPropertyOf <#hasStartPortCall>.
+
+gl:hasTrack rdfs:subPropertyOf <#hasTrack>.
+
+gl:hasVessel rdfs:subPropertyOf <#undertakenBy>.
