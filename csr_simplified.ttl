@@ -1,4 +1,4 @@
-@base <http://purl.org/org/iode/po/voc/cruise-summary-reports>.
+@base <http://accuosto.org/csr>.
 
 @prefix csr: <http://purl.org/org/iode/po/voc/cruise-summary-reports>.
 @prefix dct: <http://www.purl.org/dc/terms/>.
@@ -15,32 +15,6 @@
 @prefix sdo: <http://schema.org/>.
 @prefix vann: <http://purl.org/vocab/vann/>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-
-csr:AssociatedEvent a rdfs:Class.
-
-csr:Cruise a rdfs:Class;
-	rdfs:subClassOf gl:Cruise, marineTLO:BC61_Capture_Activity, sdo:Event.
-
-csr:CruiseSummaryReport a rdfs:Class;
-	rdfs:subClassOf foaf:Document, gl:Document, prov:Entity;
-	gl:documentType [a gl:DocumentType].
-
-csr:Measurement a rdfs:Class;
-	rdfs:subClassOf csr:Operation.
-
-csr:Mooring a rdfs:Class;
-	rdfs:subClassOf csr:Operation.
-
-csr:Operation a rdfs:Class.
-
-csr:PortCall a rdfs:Class;
-	rdfs:subClassOf gl:PortCall, sdo:Event.
-	
-gl:Cruise a rdfs:Class;
-	rdfs:subClassOf csr:Cruise.
-
-gl:PortCall a rdfs:Class;
-	rdfs:subClassOf csr:PortCall.
 
 csr:additionalDocumentation rdfs:subPropertyOf rdfs:seeAlso;
     rdfs:domain csr:CruiseSummaryReport;
