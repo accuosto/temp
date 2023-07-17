@@ -1,3 +1,5 @@
+@base <http://purl.org/org/iode/po/voc/cruise-summary-reports>.
+
 @prefix csr: <http://purl.org/org/iode/po/voc/cruise-summary-reports>.
 @prefix dct: <http://www.purl.org/dc/terms/>.
 @prefix dbo: <http://dbpedia.org/ontology/>.
